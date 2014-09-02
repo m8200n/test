@@ -395,6 +395,6 @@ To quit `gdb`, all you have to do it type `quit` or `q` in the command line. It 
 ```
 (gdb) quit
 ```
-
+With these commands, you will be able to debug your future programs more efficiently rather than going through your code, line by line and trying to find bugs. You will save time by using `gdb`.
 
 

@@ -7,7 +7,7 @@ GDB is a debugger which allows the user to see what is going on in the executed 
 
 #####Starting gdb
 
-To start gdb, we need a program. Using a text editor, such as vim, write this simple program and name it test.cpp
+To start `gdb`, we need a program. Using a text editor, such as `vim`, write this simple program and name it `test.cpp`
 
 ```
 #include <iostream>
@@ -26,21 +26,21 @@ cout << x << " times " << y << " equals " << z << endl;
 return 0;
 }
 ```
-Make sure that test.cpp compiles by typing
+Make sure that `test.cpp` compiles by typing
 
 ```
 $ g++ -g test.cpp
 ```
-And then press the enter key. The -g flag enables debugging and will use the variables and fuctions in gdb.
+And then press the enter key. The `-g` flag enables debugging and will use the variables and fuctions in `gdb`.
 
-Once test.cpp compiles, we will start gdb with
+Once `test.cpp` compiles, we will start `gdb` with
 
 ```
 $ gdb ./a.out
 ```
-By entering in this command, you now are in the gdb debugging program. This command does not run the program but it opens the a.out file in gdb.
+By entering in this command, you now are in the `gdb` debugging program. This command does not run the program but it opens the `a.out` file in `gdb`.
 
-The command line in gdb will look like
+The command line in `gdb` will look like
 
 ```
 (gdb) 
@@ -49,7 +49,7 @@ You can enter commands after the `(gdb)`
 
 #####Running the program
 
-Now you want to run the program in gdb. Type `run` or `r` to run the program.
+Now you want to run the program in `gdb`. Type `run` or `r` to run the program.
 
 ```
 (gdb) run
@@ -94,13 +94,57 @@ As you can see, it creates a breakpoint on line 10.
 When you `run` the program, it will output
 
 ```
+(gdb) run
+Starting program: /home/csmajs/kle016/Desktop/gdb/a.out
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+
+Breakpoint 1, main () at test.cpp:10
+10      cout << "Enter first number" << endl;
+(gdb)
+```
+Notice how the program pauses here at line 10. Line 10 has not been executed yet. It is because the breakpoint was set here on line 10, so it paused the program on line 10.
+
+This is useful for because it suspends other lines of code from executing so that you can inspect the variables and exection of the program.
+
+If you want to continue the program, type in `continue` in the command line
+
+```
+(gdb) continue
+Continuing.
+Enter first number
+```
+
+By typing `in continue` in the command line, the program will execute from the breakpoint, which is line 10. The program executes line 11, which is `Enter first number`.
+
+
+You can also set breakpoints on fuctions. To set breakpoints on fuctions, you need to type out the name of the fuction right after the `break`
+
+```
+(gdb) break nameofthefuction
+```
+
+What this does is that it pauses that this fuction, just like how it paused when we used `break 10`.
+
+You can make multiple breakpoints in the program through `gdb`. To make another breakpoint in the program, type `break point` followed by the line number. By setting another breakpoint, you are able to pause at another line in the program.
+
+```
+(gdb) break 12
+Breakpoint 2 at 0x400957: file test.cpp, line 12.
+```
+Now there are two breakpoints in `test.cpp`. Now run the program from `gdb` by `r` in the command line
+
+```
+(gdb) run
 Starting program: /home/csmajs/kle016/Desktop/gdb/a.out
 warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
 
 Breakpoint 1, main () at test.cpp:10
 10      cout << "Enter first number" << endl;
 ```
+Notice
 
-Not only 
+
+
+
 
 

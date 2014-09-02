@@ -17,10 +17,15 @@ using namespace std;
 int main()
 {
 
-int x = 2;
-int y = 3;
-int z = 2*3;
-cout << "This is a test!" << endl;
+int x;
+int y;
+
+cout << "Enter first number" << endl;
+cin >> x;
+cout << "Enter second nunber" << endl;
+cin >> y;
+
+int z = x * y;
 cout << x << " times " << y << " equals " << z << endl;
 
 return 0;
@@ -189,6 +194,18 @@ You can also set breakpoints on fuctions. To set breakpoints on fuctions, you ne
 
 What this does is that it pauses that this fuction, just like how it paused when we used `break`.
 
+To remove all the breakpoints, type `delete` or `d` into the command line of `gdb`. Then it will ask if you want to delete all the breakpoints. Type `y` for yes or `n` for no.
+
+```
+(gdb) delete
+Delete all breakpoints? (y or n) y
+(gdb) info break
+No breakpoints or watchpoints.
+(gdb)   
+```
+By running `info break`, there are no breakpoints showing up because we deleted them all.
+
+
 #####Stepping Through Code
 
 Stepping lets you go through the code of the program so you will be able to narrow down the bug in your program.
@@ -261,10 +278,123 @@ Enter second nunber
 ```
 The program continued off of breakpoint 1, which is line 10. The `next` command steps through the program one line at a time.
 
-The `next` command also applies to functions. If the current line is on a fuction and you use `next`, the entire function will excute and then pause at the following line. Instead of executing line by line of the function.
+The `next` or `n` command also applies to functions. If the current line is on a fuction and you use `next`, the entire function will execute and then pause at the following line. Instead of executing line by line of the function.
 
+The `step` or `s` command acts like `next` only if the current line is setting a variable. And if the current line is on a function, the `step` command will only execute the first line of the fuction.
 
+The `finish` or `f` command pauses the executing fuction if you accidently step througha fuction that you did not want to.
 
+#####Backtracing
+
+`backtrace` or `bt` tells you where you are in the execution of the program. It shows where you are in the current program. `backtrace` prints the contents of the stack. The stack lists of function calls.
+
+```
+(gdb) backtrace
+#0  main () at test.cpp:12
+(gdb)   
+```
+Since `test.cpp` has only one function, `main()`, there is only one on the stack. So `backtrace` prints out `main()`.
+
+#####Help
+
+`help` or `h` brings up the help topics. It shows a list of commands that you might need help on.
+
+```
+(gdb) help
+List of classes of commands:
+
+aliases -- Aliases of other commands
+breakpoints -- Making program stop at certain points
+data -- Examining data
+files -- Specifying and examining files
+internals -- Maintenance commands
+obscure -- Obscure features
+running -- Running the program
+stack -- Examining the stack
+status -- Status inquiries
+support -- Support facilities
+tracepoints -- Tracing of program execution without stopping the program
+user-defined -- User-defined commands
+
+Type "help" followed by a class name for a list of commands in that class.
+Type "help all" for the list of all commands.
+Type "help" followed by command name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Command name abbreviations are allowed if unambiguous.
+(gdb)    
+```
+If you need help on `breakpoints`, type `help breakpoints` into the command line. `gdb` will print out information on `breakpoints`.
+
+```
+(gdb) help breakpoints
+Making program stop at certain points.
+
+List of commands:
+
+awatch -- Set a watchpoint for an expression
+break -- Set breakpoint at specified line or function
+catch -- Set catchpoints to catch events
+catch assert -- Catch failed Ada assertions
+catch catch -- Catch an exception
+catch exception -- Catch Ada exceptions
+catch exec -- Catch calls to exec
+catch fork -- Catch calls to fork
+catch syscall -- Catch system calls by their names and/or numbers
+catch throw -- Catch an exception
+catch vfork -- Catch calls to vfork
+clear -- Clear breakpoint at specified line or function
+commands -- Set commands to be executed when a breakpoint is hit
+condition -- Specify breakpoint number N to break only if COND is true
+delete -- Delete some breakpoints or auto-display expressions
+delete breakpoints -- Delete some breakpoints or auto-display expressions
+delete checkpoint -- Delete a checkpoint (experimental)
+delete display -- Cancel some expressions to be displayed when program stops
+delete mem -- Delete memory region
+---Type <return> to continue, or q <return> to quit---
+delete tracepoints -- Delete specified tracepoints
+disable -- Disable some breakpoints
+disable breakpoints -- Disable some breakpoints
+disable display -- Disable some expressions to be displayed when program stops
+disable mem -- Disable memory region
+disable tracepoints -- Disable specified tracepoints
+enable -- Enable some breakpoints
+enable delete -- Enable breakpoints and delete when hit
+enable display -- Enable some expressions to be displayed when program stops
+enable mem -- Enable memory region
+enable once -- Enable breakpoints for one hit
+enable tracepoints -- Enable specified tracepoints
+hbreak -- Set a hardware assisted  breakpoint
+ignore -- Set ignore-count of breakpoint number N to COUNT
+rbreak -- Set a breakpoint for all functions matching REGEXP
+rwatch -- Set a read watchpoint for an expression
+tbreak -- Set a temporary breakpoint
+tcatch -- Set temporary catchpoints to catch events
+tcatch assert -- Catch failed Ada assertions
+tcatch catch -- Catch an exception
+tcatch exception -- Catch Ada exceptions
+tcatch exec -- Catch calls to exec
+tcatch fork -- Catch calls to fork
+---Type <return> to continue, or q <return> to quit---
+tcatch syscall -- Catch system calls by their names and/or numbers
+tcatch throw -- Catch an exception
+tcatch vfork -- Catch calls to vfork
+thbreak -- Set a temporary hardware assisted breakpoint
+trace -- Set a tracepoint at specified line or function
+watch -- Set a watchpoint for an expression
+
+Type "help" followed by command name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Command name abbreviations are allowed if unambiguous.
+(gdb)    
+``` 
+
+#####Quit
+
+To quit `gdb`, all you have to do it type `quit` or `q` in the command line. It brings you back to the terminal.
+
+```
+(gdb) quit
+```
 
 
 

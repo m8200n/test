@@ -150,7 +150,7 @@ Enter first number
 Breakpoint 2, main () at test.cpp:12
 12      cout << "Enter second nunber" << endl;
 (gdb)       
-
+```
 If you want to see all the breakpoints that you have made, type `info break` into the command line.
 
 ```

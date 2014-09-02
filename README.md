@@ -233,4 +233,38 @@ Line 5 is in the middle of the listed out lines.
 
 You can also use the `list` command on fuctions. You would type `list nameoffuction`, where `nameoffuction` is the fuction name.
 
+The `next` command runs the next line of the program.
+
+```
+Breakpoint 1, main () at test.cpp:10
+10      cout << "Enter first number" << endl;
+(gdb) next
+Enter first number
+11      cin >> x;
+(gdb) next
+2
+12      cout << "Enter second nunber" << endl;
+(gdb) next
+Enter second nunber
+13      cin >> y;
+(gdb) next
+7
+15      int z = x * y;
+(gdb) next
+16      cout << x << " times " << y << " equals " << z << endl;
+(gdb) next
+2 times 7 equals 14
+18      return 0;
+(gdb) next
+19      }
+(gdb) 
+```
+The program continued off of breakpoint 1, which is line 10. The `next` command steps through the program one line at a time.
+
+The `next` command also applies to functions. If the current line is on a fuction and you use `next`, the entire function will excute and then pause at the following line. Instead of executing line by line of the function.
+
+
+
+
+
 

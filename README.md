@@ -1,4 +1,3 @@
-
 Basic guide for gdb
 ===================
 
@@ -59,13 +58,49 @@ Remember that the commands go after the `(gdb)`.
 This runs the `a.out` that was loaded into gdb with the `gdb ./a.out` command from the terminal.
 The program runs normally just `$ ./a.out`.
 
-Another way to run the program though gdb is to passing arguments.
+```
+(gdb) run
+Starting program: /home/csmajs/kle016/Desktop/gdb/a.out
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+Enter first number
+2
+Enter second nunber
+4
+2 times 4 equals 8
+
+Program exited normally.
+(gdb)   
+```
+
+Another way to run the program though `gdb` is to passing arguments.
 ```
 r arg1 arg2
 ```
 
-This runs the program with `arg1` and `arg2` 
+This runs the program with `arg1` and `arg2` already in place
 
 #####Breakpoints
+
+You can create breakpoints in `gdb`. A breakpoint causes a pause (break) in the program when it reaches a certain point.
+
+To use breakpoints, type `break` or `b` in the `gdb` command line followed by the line number that you want to pause (break) at.
+
+```
+(gdb) break 10
+Breakpoint 1 at 0x40092d: file test.cpp, line 10.
+```
+As you can see, it creates a breakpoint on line 10.
+
+When you `run` the program, it will output
+
+```
+Starting program: /home/csmajs/kle016/Desktop/gdb/a.out
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+
+Breakpoint 1, main () at test.cpp:10
+10      cout << "Enter first number" << endl;
+```
+
+Not only 
 
 

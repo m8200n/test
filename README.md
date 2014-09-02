@@ -114,16 +114,7 @@ Continuing.
 Enter first number
 ```
 
-By typing `in continue` in the command line, the program will execute from the breakpoint, which is line 10. The program executes line 11, which is `Enter first number`.
-
-
-You can also set breakpoints on fuctions. To set breakpoints on fuctions, you need to type out the name of the fuction right after the `break`
-
-```
-(gdb) break nameofthefuction
-```
-
-What this does is that it pauses that this fuction, just like how it paused when we used `break 10`.
+By typing in `continue` in the command line, the program will execute from the breakpoint, which is line 10. The program executes line 11, which is `Enter first number`.
 
 You can make multiple breakpoints in the program through `gdb`. To make another breakpoint in the program, type `break point` followed by the line number. By setting another breakpoint, you are able to pause at another line in the program.
 
@@ -131,7 +122,7 @@ You can make multiple breakpoints in the program through `gdb`. To make another 
 (gdb) break 12
 Breakpoint 2 at 0x400957: file test.cpp, line 12.
 ```
-Now there are two breakpoints in `test.cpp`. Now run the program from `gdb` by `r` in the command line
+Now there are two breakpoints in `test.cpp`. Now run the program from `gdb` by ttyping `run` in the command line
 
 ```
 (gdb) run
@@ -140,11 +131,62 @@ warning: no loadable sections found in added symbol-file system-supplied DSO at 
 
 Breakpoint 1, main () at test.cpp:10
 10      cout << "Enter first number" << endl;
+(gdb)
 ```
-Notice
+The program paused at `Breakpoint 1`, which is the first breakpoint. To continue on to the next breakpoint, type `continue` in the command line. The program will continue until the next breakpoint, which is line 12.
+
+```
+(gdb) run
+Starting program: /home/csmajs/kle016/Desktop/gdb/a.out
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+
+Breakpoint 1, main () at test.cpp:10
+10      cout << "Enter first number" << endl;
+(gdb) continue
+Continuing.
+Enter first number
+6
+
+Breakpoint 2, main () at test.cpp:12
+12      cout << "Enter second nunber" << endl;
+(gdb)       
+
+If you want to see all the breakpoints that you have made, type `info break` into the command line.
+
+```
+(gdb) info break
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040092d in main() at test.cpp:10
+        breakpoint already hit 1 time
+2       breakpoint     keep y   0x0000000000400957 in main() at test.cpp:12
+        breakpoint already hit 1 time
+(gdb)      
+```
+
+
+To delete a breakpoint, type `delete N`, where `N` is the breakpoint number.
+
+```
+(gdb) delete 2
+(gdb) info break
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040092d in main() at test.cpp:10
+        breakpoint already hit 1 time
+(gdb)    
+```
+As you can see, we deleted 2, which was breakpoint 2. Then we used `info break` to confirm that it has been deleted.
 
 
 
 
+
+
+You can also set breakpoints on fuctions. To set breakpoints on fuctions, you need to type out the name of the fuction right after the `break`
+
+```
+(gdb) break nameofthefuction
+```
+
+What this does is that it pauses that this fuction, just like how it paused when we used `break`.
 
 
